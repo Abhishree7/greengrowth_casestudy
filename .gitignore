@@ -1,0 +1,29 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Uploads (runtime files)
+uploads/
+
+# Node
+node_modules/
+frontend/dist/
+
+# macOS
+.DS_Store
+
+# Duplicate files (IDE artifacts)
+*\ 2.py
+*\ 2.db
