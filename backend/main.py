@@ -1,11 +1,13 @@
 import json
 import os
 import sys
+import threading
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import JSONResponse
 
 # Load .env from project root regardless of CWD
 _env_path = os.path.join(os.path.dirname(__file__), "..", ".env")
@@ -27,7 +29,6 @@ _allowed_origins = [
     "http://localhost:5173",
     "http://localhost:4173",
 ]
-# Allow any Railway/custom domain set via env var
 _extra_origin = os.environ.get("ALLOWED_ORIGIN")
 if _extra_origin:
     _allowed_origins.append(_extra_origin)
@@ -46,11 +47,27 @@ app.include_router(policy_qa.router, prefix="/api")
 SUBMISSIONS_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "submissions")
 
 
+@app.get("/health")
+def health():
+    return JSONResponse({"status": "ok"})
+
+
 @app.on_event("startup")
 def startup():
-    _seed_employees()
-    load_policies()  # warm the cache
-    print("Policies loaded and cached.")
+    # Run seeding and policy loading in a background thread so the server
+    # can accept healthcheck requests immediately on startup.
+    def _init():
+        try:
+            _seed_employees()
+        except Exception as e:
+            print(f"Warning: employee seeding failed: {e}")
+        try:
+            load_policies()
+            print("Policies loaded and cached.")
+        except Exception as e:
+            print(f"Warning: policy loading failed: {e}")
+
+    threading.Thread(target=_init, daemon=True).start()
 
 
 def _seed_employees():
