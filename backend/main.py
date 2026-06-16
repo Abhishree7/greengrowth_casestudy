@@ -23,9 +23,18 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Northwind Expense Review", version="1.0.0")
 
+_allowed_origins = [
+    "http://localhost:5173",
+    "http://localhost:4173",
+]
+# Allow any Railway/custom domain set via env var
+_extra_origin = os.environ.get("ALLOWED_ORIGIN")
+if _extra_origin:
+    _allowed_origins.append(_extra_origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:4173"],
+    allow_origins=_allowed_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
