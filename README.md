@@ -1,5 +1,7 @@
 # Northwind Expense Review — AI-Assisted Pre-Review System
 
+> **Live demo:** https://greengrowthcasestudy-production.up.railway.app
+
 An AI-powered expense receipt pre-review system for Northwind Logistics. Employees submit expense receipts; the system extracts structured data, checks every item against the full company T&E policy library, and surfaces a verdict (`compliant` / `flagged` / `rejected` / `needs_info`) with verbatim policy citations. Human reviewers make the final call and can override any AI verdict with a logged reason.
 
 ---

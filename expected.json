@@ -1,0 +1,117 @@
+{
+  "submissions": [
+    {
+      "submission_folder": "01_clean_denver",
+      "employee_id": "NW-04821",
+      "trip_purpose": "Quarterly client review with Mountain Freight Partners in Denver",
+      "trip_dates": "2025-04-14 to 2025-04-16",
+      "expected_verdicts": {
+        "01_united_airlines.pdf": "compliant",
+        "02_marriott_denver.pdf": "compliant",
+        "03_uber_to_hotel.pdf": "compliant",
+        "04_dinner_mercantile.pdf": "compliant",
+        "05_breakfast_snooze.pdf": "compliant",
+        "06_lunch_sushiden.pdf": "compliant",
+        "07_dinner_avanti.pdf": "compliant",
+        "08_uber_to_airport.pdf": "compliant"
+      }
+    },
+    {
+      "submission_folder": "02_clean_boston_conf",
+      "employee_id": "NW-02719",
+      "trip_purpose": "AWS re:Inforce 2025 conference attendance — security architecture track",
+      "trip_dates": "2025-06-09 to 2025-06-12",
+      "expected_verdicts": {
+        "01_conference_registration.pdf": "compliant",
+        "02_delta_flight.pdf": "compliant",
+        "03_hilton_back_bay.pdf": "compliant",
+        "04_lyft_to_hotel.pdf": "compliant",
+        "05_lunch_saltie.pdf": "compliant",
+        "06_dinner_eastern.pdf": "compliant",
+        "07_lyft_to_airport.pdf": "compliant"
+      }
+    },
+    {
+      "submission_folder": "03_dinner_over_cap",
+      "employee_id": "NW-05117",
+      "trip_purpose": "Vendor site visit at Midwest Distribution Center, Chicago",
+      "trip_dates": "2025-05-06 to 2025-05-07",
+      "expected_verdicts": {
+        "01_american_flight.pdf": "compliant",
+        "02_hyatt_chicago.pdf": "compliant",
+        "03_uber_to_hotel.pdf": "compliant",
+        "04_dinner_alinea.pdf": "rejected",
+        "05_breakfast_wildberry.pdf": "compliant",
+        "06_lyft_to_airport.pdf": "compliant"
+      }
+    },
+    {
+      "submission_folder": "04_alcohol_solo_travel",
+      "employee_id": "NW-03488",
+      "trip_purpose": "Solo carrier research trip — meeting potential regional partners in Austin",
+      "trip_dates": "2025-03-18 to 2025-03-20",
+      "expected_verdicts": {
+        "01_southwest_flight.pdf": "compliant",
+        "02_marriott_austin.pdf": "compliant",
+        "03_uber_to_hotel.pdf": "compliant",
+        "04_lunch_torchys.pdf": "compliant",
+        "05_dinner_franklin.pdf": "flagged",
+        "06_breakfast_jos.pdf": "compliant",
+        "07_lyft_to_airport.pdf": "compliant"
+      }
+    },
+    {
+      "submission_folder": "05_receipt_mismatch",
+      "employee_id": "NW-04102",
+      "trip_purpose": "Quarterly QBR with PNW client account (Pacific Coast Distributors)",
+      "trip_dates": "2025-02-11 to 2025-02-13",
+      "expected_verdicts": {
+        "01_alaska_flight.pdf": "compliant",
+        "02_hyatt_seattle.pdf": "compliant",
+        "03_uber_to_hotel.pdf": "compliant",
+        "04_lunch_toulouse.pdf": "compliant",
+        "05_dinner_pinkdoor.pdf": "flagged",
+        "06_lyft_to_airport.pdf": "compliant"
+      }
+    }
+  ],
+  "qa_tests": [
+    {
+      "question": "What is the dinner cap for solo travel?",
+      "expected_in_scope": true,
+      "expected_answer_contains": ["75"]
+    },
+    {
+      "question": "Can I expense alcohol on a client entertainment dinner?",
+      "expected_in_scope": true,
+      "expected_answer_contains": []
+    },
+    {
+      "question": "What is the lodging cap for a Tier 1 city?",
+      "expected_in_scope": true,
+      "expected_answer_contains": []
+    },
+    {
+      "question": "What approval is required for expenses over $500?",
+      "expected_in_scope": true,
+      "expected_answer_contains": []
+    },
+    {
+      "question": "Which cities are classified as Tier 1 high-cost?",
+      "expected_in_scope": true,
+      "expected_answer_contains": []
+    },
+    {
+      "question": "What is Northwind's parental leave policy?",
+      "expected_in_scope": false
+    },
+    {
+      "question": "What is the company's 401k matching rate?",
+      "expected_in_scope": false
+    },
+    {
+      "question": "How do I request a raise?",
+      "expected_in_scope": false
+    }
+  ]
+}
